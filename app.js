@@ -7,7 +7,7 @@ var logger = require("morgan");
 var connectDB = require("./Config/db.config");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-
+const reviewRouter = require("./routes/Review");
 var app = express();
 connectDB();
 // view engine setup
@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-
+app.use("/review", reviewRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
