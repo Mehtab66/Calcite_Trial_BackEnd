@@ -285,6 +285,7 @@ __metadata:
     mongoose: "npm:^8.10.1"
     morgan: "npm:~1.9.1"
     nodemon: "npm:^3.1.9"
+    sentiment: "npm:^5.0.2"
   languageName: unknown
   linkType: soft
 
@@ -2188,6 +2189,13 @@ __metadata:
     range-parser: "npm:~1.2.0"
     statuses: "npm:~1.4.0"
   checksum: 10c0/64681de4068c53aa7792d977d8c5b548966ea4aec018850ebf8516cc8bd5547c6e7189ec599907e6a41216058347f0e4fc72d3b37a5f38bf07d5cda168b2b84d
+  languageName: node
+  linkType: hard
+
+"sentiment@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "sentiment@npm:5.0.2"
+  checksum: 10c0/c2bbc66dc513c84decdeff390b0e39e18c392616808c796d71c46143438ed7baf93ca34ec00007a7fa87de2b226e0f121c14e7bb090bb49def444b82f7eb38d1
   languageName: node
   linkType: hard
 

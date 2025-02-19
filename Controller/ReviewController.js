@@ -1,4 +1,4 @@
-const Review = require("../models/Review");
+const Review = require("../Models/ReviewSchema");
 const Sentiment = require("sentiment");
 
 // Create a new review

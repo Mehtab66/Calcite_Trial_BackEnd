@@ -43,7 +43,8 @@ const RAW_RUNTIME_STATE =
           ["mongodb", "virtual:6d6f49b5a6803b0c6527d3ddc67d0d2472f3dad3f8f7e70c92387d15ef685b6e24a342ce74eceb6e8064e0693fb87c0f9a453011a681df774dbae14fb5ccf506#npm:6.13.0"],\
           ["mongoose", "npm:8.10.1"],\
           ["morgan", "npm:1.9.1"],\
-          ["nodemon", "npm:3.1.9"]\
+          ["nodemon", "npm:3.1.9"],\
+          ["sentiment", "npm:5.0.2"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -365,7 +366,8 @@ const RAW_RUNTIME_STATE =
           ["mongodb", "virtual:6d6f49b5a6803b0c6527d3ddc67d0d2472f3dad3f8f7e70c92387d15ef685b6e24a342ce74eceb6e8064e0693fb87c0f9a453011a681df774dbae14fb5ccf506#npm:6.13.0"],\
           ["mongoose", "npm:8.10.1"],\
           ["morgan", "npm:1.9.1"],\
-          ["nodemon", "npm:3.1.9"]\
+          ["nodemon", "npm:3.1.9"],\
+          ["sentiment", "npm:5.0.2"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -2534,6 +2536,15 @@ const RAW_RUNTIME_STATE =
           ["on-finished", "npm:2.3.0"],\
           ["range-parser", "npm:1.2.1"],\
           ["statuses", "npm:1.4.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["sentiment", [\
+      ["npm:5.0.2", {\
+        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/sentiment-npm-5.0.2-9784c98509-10c0.zip/node_modules/sentiment/",\
+        "packageDependencies": [\
+          ["sentiment", "npm:5.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\

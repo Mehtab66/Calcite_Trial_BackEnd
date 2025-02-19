@@ -1,13 +1,13 @@
 var express = require("express");
 var router = express.Router();
-const ReviewController = require("../Controllers/ReviewController");
+const ReviewController = require("../Controller/ReviewController");
 const auth = require("../Middlewares/Auth");
 
 //Add a review
 router.post(
   "/AddReview",
   auth.verifyToken,
-  auth.isAuthenticated,
+  auth.isAdmin,
   ReviewController.createReview
 );
 
@@ -37,7 +37,7 @@ router.delete(
 router.post(
   "/auto-tag",
   auth.verifyToken,
-  auth.isAuthenticated,
+  auth.isAdmin,
   ReviewController.autoTagReview
 );
 module.exports = router;
