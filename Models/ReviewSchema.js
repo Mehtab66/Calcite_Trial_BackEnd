@@ -1,16 +1,16 @@
+// models/Review.js
 const mongoose = require("mongoose");
 
-const reviewSchema = mongoose.Schema(
-  {
-    agentId: { type: String, required: true },
-    reviewText: { type: String, required: true },
-    sentiment: { type: String, enum: ["positive", "neutral", "negative"] },
-    performance: { type: String, enum: ["fast", "average", "slow"] },
-    accuracy: { type: String, enum: ["accurate", "mistake"] },
-    tags: [{ type: String }],
+const reviewSchema = new mongoose.Schema({
+  agentId: String,
+  reviewText: String,
+  location: String,
+  tags: {
+    sentiment: { type: String, enum: ["Positive", "Neutral", "Negative"] },
+    performance: { type: String, enum: ["Fast", "Average", "Slow"] },
+    accuracy: { type: String, enum: ["Accurate", "Mistake"] },
   },
-  { timestamps: true }
-);
+  rating: Number,
+});
 
-const Review = mongoose.model("Review", reviewSchema);
-module.exports = Review;
+module.exports = mongoose.model("Review", reviewSchema);
