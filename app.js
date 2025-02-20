@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 const corsOptions = {
-  origin: "http://localhost:5173", // Frontend origin
+  origin: "https://calcite-trial-frontend.onrender.com/", // Frontend origin
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "Cache-Control"],
