@@ -6,34 +6,12 @@ const auth = require("../Middlewares/Auth");
 router.get("/", auth.verifyToken, ReviewController.getAllReviews);
 router.get("/analytics", auth.verifyToken, ReviewController.getAnalytics);
 
-//Add a review
-router.post(
-  "/AddReview",
-  auth.verifyToken,
-  auth.isAdmin,
-  ReviewController.createReview
-);
-
-// Fetch all reviews or filtered reviews
-router.get("/getFilteredReviews", ReviewController.getFilteredReviews);
-
-// Fetch a specific review by ID
-router.get("/:id", ReviewController.getReviewById);
-
 // Update a review - Admin only
 router.put(
-  "/:id",
+  "/:id/tag",
   auth.verifyToken,
   auth.isAdmin,
-  ReviewController.updateReview
-);
-
-// Delete a review - Admin only
-router.delete(
-  "/:id",
-  auth.verifyToken,
-  auth.isAdmin,
-  ReviewController.deleteReview
+  ReviewController.updateReviewTags
 );
 
 // Auto-tag a review - Admin or possibly authenticated user if allowed

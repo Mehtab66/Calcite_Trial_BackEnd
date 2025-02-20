@@ -33,6 +33,8 @@ module.exports.login = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "Invalid email or password." });
     }
+    if (user.isDeleted)
+      return res.status(400).json({ message: "User not found" });
     const validPassword = await bcrypt.compare(
       req.body.password,
       user.password
@@ -66,4 +68,43 @@ module.exports.elevateToAdmin = async (req, res) => {
   } else {
     res.status(400).send("User is already an admin");
   }
+};
+
+//get all users
+module.exports.getUsers = async (req, res) => {
+  console.log(req.user);
+  try {
+    const users = await User.find({
+      _id: { $ne: req.user._id },
+      isDeleted: false,
+    }).select("-password");
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+//deleteUser
+module.exports.DeleteUser = async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (!user) return res.status(404).json({ message: "User not found" });
+  user.isDeleted = true;
+  await user.save();
+  res.json({ message: "User deleted" });
+};
+
+//
+module.exports.UpdateRole = async (req, res) => {
+  const { role } = req.body;
+  if (!["user", "admin"].includes(role)) {
+    return res.status(400).json({ message: "Invalid role" });
+  }
+  const user = await User.findById(req.params.id);
+  if (!user) return res.status(404).json({ message: "User not found" });
+  user.role = role;
+  await user.save();
+  res.json({
+    message: "User role updated",
+    user: { id: user._id, name: user.name, email: user.email, role: user.role },
+  });
 };

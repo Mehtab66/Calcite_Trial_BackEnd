@@ -24,7 +24,13 @@ app.use((req, res, next) => {
   console.log(`Request: ${req.method} ${req.path}`);
   next();
 });
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:5173", // Frontend origin
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "Cache-Control"],
+};
+app.use(cors(corsOptions));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/review", reviewRouter);
