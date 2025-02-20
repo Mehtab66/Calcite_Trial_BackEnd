@@ -3,6 +3,9 @@ var router = express.Router();
 const ReviewController = require("../Controller/ReviewController");
 const auth = require("../Middlewares/Auth");
 
+router.get("/", auth.verifyToken, ReviewController.getAllReviews);
+router.get("/analytics", auth.verifyToken, ReviewController.getAnalytics);
+
 //Add a review
 router.post(
   "/AddReview",
@@ -40,4 +43,5 @@ router.post(
   auth.isAdmin,
   ReviewController.autoTagReview
 );
+
 module.exports = router;

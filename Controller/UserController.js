@@ -4,6 +4,7 @@ const User = require("../Models/UserSchema");
 
 //User Registeration module
 module.exports.register = async (req, res) => {
+  console.log("into the register");
   try {
     let user = await User.findOne({ email: req.body.email });
     if (user) return res.status(400).send("User already registered.");
@@ -19,11 +20,7 @@ module.exports.register = async (req, res) => {
     user.password = await bcrypt.hash(user.password, salt);
     await user.save();
 
-    const token = jwt.sign(
-      { _id: user._id, role: user.role },
-      process.env.JWT_SECRET
-    );
-    res.status(201).send({ token });
+    res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -33,21 +30,23 @@ module.exports.register = async (req, res) => {
 module.exports.login = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(400).send("Invalid email or password.");
-
+    if (!user) {
+      return res.status(400).json({ message: "Invalid email or password." });
+    }
     const validPassword = await bcrypt.compare(
       req.body.password,
       user.password
     );
     if (!validPassword)
-      return res.status(400).send("Invalid email or password.");
+      return res.status(400).json({ message: "Invalid email or password." });
 
     const token = jwt.sign(
       { _id: user._id, role: user.role },
       process.env.JWT_SECRET
     );
-    res.send({ token });
+    res.send({ token, user });
   } catch (error) {
+    console.log(error);
     res.status(500).send(error.message);
   }
 };

@@ -7,7 +7,8 @@ var logger = require("morgan");
 var connectDB = require("./Config/db.config");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-const reviewRouter = require("./routes/Review");
+var reviewRouter = require("./routes/Review");
+var cors = require("cors");
 var app = express();
 connectDB();
 // view engine setup
@@ -19,7 +20,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use((req, res, next) => {
+  console.log(`Request: ${req.method} ${req.path}`);
+  next();
+});
+app.use(cors());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/review", reviewRouter);
