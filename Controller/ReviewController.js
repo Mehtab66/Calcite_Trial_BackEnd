@@ -11,7 +11,7 @@ module.exports.getAllReviews = async (req, res) => {
 
     const reviews = await Review.find()
       .select(
-        "agentName location rating performance accuracy sentiment complaints orderPrice"
+        "agentName orderType manualTags discountApplied location rating performance accuracy sentiment complaints orderPrice"
       )
       .skip(skip)
       .limit(limit)
