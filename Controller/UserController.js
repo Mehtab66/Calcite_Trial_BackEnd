@@ -46,7 +46,7 @@ module.exports.login = async (req, res) => {
       { _id: user._id, role: user.role },
       process.env.JWT_SECRET
     );
-    res.send({ token, user });
+    res.status(200).json({ token, user });
   } catch (error) {
     console.log(error);
     res.status(500).send(error.message);
